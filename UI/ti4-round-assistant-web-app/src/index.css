@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+    --color-ti-orange: #ff9900;
+    --color-ti-beige: #f5f5dc;
+    --font-ti-header: "Impact", "Arial Black", sans-serif;
+    /* Placeholder font stack */
+}
+
+body {
+    @apply bg-slate-950 text-white min-h-screen flex flex-col;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+#root {
+    @apply w-full flex-grow flex flex-col;
+}
