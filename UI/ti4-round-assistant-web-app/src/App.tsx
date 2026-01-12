@@ -1,4 +1,9 @@
+import { useState } from 'react'
+
+
 function App() {
+  const [isHowToUseOpen, setIsHowToUseOpen] = useState(false)
+
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gray-900 p-4 text-white overflow-hidden relative">
 
@@ -17,17 +22,52 @@ function App() {
       <nav className="flex flex-col gap-6 w-full max-w-sm z-10">
         <MenuButton label="New game" />
         <MenuButton label="Continue game" />
-        <MenuButton label="How to use" />
+        <MenuButton label="How to use" onClick={() => setIsHowToUseOpen(true)} />
         <MenuButton label="Statistics" />
       </nav>
+
+      {/* Modal */}
+      {isHowToUseOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+          onClick={() => setIsHowToUseOpen(false)}>
+          <div className="bg-slate-900 border border-orange-500/30 rounded-lg p-6 max-w-lg w-full shadow-2xl relative"
+            onClick={e => e.stopPropagation()}>
+
+            <h2 className="text-2xl font-bold text-orange-500 mb-4 uppercase tracking-wider">How to Use</h2>
+
+            <div className="space-y-4 text-slate-300">
+              <p>Welcome to the Twilight Imperium Round Assistant. This tool is designed to to be used on a screen that is visible to all players. This can be any device that has a large enough screen e.g: TV, Projector, Monitor, Tablet, Smartphone etc.</p>
+              <p>Players can also join the active game session from a mobile device to view public information about the game.</p>
+              <p>This assistant will support all official expansions and rules, including Thunder's Edge. However there is no plans to support Discordant Stars</p>
+              <p>This assistant helps with the following for flow and speed:</p>
+              <ul className="list-disc pl-5 space-y-2">
+                <li>Strategy Phase</li>
+                <li>Iniative Tracker</li>
+                <li>Victory Points</li>
+                <li>Public and Secret Objectives</li>
+                <li>Laws</li>
+                <li>Galactic Events</li>
+              </ul>
+              <p className="text-sm italic text-slate-500 mt-4">Click outside or close to return.</p>
+            </div>
+
+            <button
+              onClick={() => setIsHowToUseOpen(false)}
+              className="mt-6 w-full py-2 bg-orange-600 hover:bg-orange-500 text-white rounded font-bold uppercase transition-colors"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
 
     </div>
   )
 }
 
-function MenuButton({ label }: { label: string }) {
+function MenuButton({ label, onClick }: { label: string; onClick?: () => void }) {
   return (
-    <button className="
+    <button onClick={onClick} className="
       group relative w-full py-4 px-6 
       bg-slate-900/40 backdrop-blur-md 
       border border-white/10 border-l-orange-500/50 border-r-orange-500/50
