@@ -1,5 +1,5 @@
+import { Modal } from './components/Modal'
 import { useState } from 'react'
-
 
 function App() {
   const [isHowToUseOpen, setIsHowToUseOpen] = useState(false)
@@ -27,39 +27,27 @@ function App() {
       </nav>
 
       {/* Modal */}
-      {isHowToUseOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
-          onClick={() => setIsHowToUseOpen(false)}>
-          <div className="bg-slate-900 border border-orange-500/30 rounded-lg p-6 max-w-lg w-full shadow-2xl relative"
-            onClick={e => e.stopPropagation()}>
-
-            <h2 className="text-2xl font-bold text-orange-500 mb-4 uppercase tracking-wider">How to Use</h2>
-
-            <div className="space-y-4 text-slate-300">
-              <p>Welcome to the Twilight Imperium Round Assistant. This tool is designed to to be used on a screen that is visible to all players. This can be any device that has a large enough screen e.g: TV, Projector, Monitor, Tablet, Smartphone etc.</p>
-              <p>Players can also join the active game session from a mobile device to view public information about the game.</p>
-              <p>This assistant will support all official expansions and rules, including Thunder's Edge. However there is no plans to support Discordant Stars</p>
-              <p>This assistant helps with the following for flow and speed:</p>
-              <ul className="list-disc pl-5 space-y-2">
-                <li>Strategy Phase</li>
-                <li>Iniative Tracker</li>
-                <li>Victory Points</li>
-                <li>Public and Secret Objectives</li>
-                <li>Laws</li>
-                <li>Galactic Events</li>
-              </ul>
-              <p className="text-sm italic text-slate-500 mt-4">Click outside or close to return.</p>
-            </div>
-
-            <button
-              onClick={() => setIsHowToUseOpen(false)}
-              className="mt-6 w-full py-2 bg-orange-600 hover:bg-orange-500 text-white rounded font-bold uppercase transition-colors"
-            >
-              Close
-            </button>
-          </div>
+      <Modal
+        isOpen={isHowToUseOpen}
+        onClose={() => setIsHowToUseOpen(false)}
+        title="How to Use"
+      >
+        <div className="space-y-4">
+          <p>Welcome to the Twilight Imperium Round Assistant. This tool is designed to to be used on a screen that is visible to all players. This can be any device that has a large enough screen e.g: TV, Projector, Monitor, Tablet, Smartphone etc.</p>
+          <p>Players can also join the active game session from a mobile device to view public information about the game.</p>
+          <p>This assistant will support all official expansions and rules, including Thunder's Edge. However there is no plans to support Discordant Stars</p>
+          <p>This assistant helps with the following for flow and speed:</p>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>Strategy Phase</li>
+            <li>Iniative Tracker</li>
+            <li>Victory Points</li>
+            <li>Public and Secret Objectives</li>
+            <li>Laws</li>
+            <li>Galactic Events</li>
+          </ul>
+          <p className="text-sm italic text-slate-500 mt-4">Click outside or close to return.</p>
         </div>
-      )}
+      </Modal>
 
     </div>
   )
