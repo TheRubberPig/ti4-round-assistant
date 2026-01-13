@@ -2,21 +2,6 @@ services:
   # --------------------------------------------------------------------------------------------------
   # Project Services
   # --------------------------------------------------------------------------------------------------
-  ti4-api:
-    build:
-      context: ./API/ti4-api
-      dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_HTTP_PORTS=8080
-      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=postgres;Username=postgres;Password=${POSTGRES_PASSWORD}
-    depends_on:
-      - db
-      - analytics
-      - service_role_exists
-
   ti4-web:
     build:
       context: ./UI/ti4-round-assistant-web-app
@@ -32,7 +17,6 @@ services:
       - /app/node_modules
     depends_on:
       - kong
-      - ti4-api
 
   # --------------------------------------------------------------------------------------------------
   # Supabase Services
