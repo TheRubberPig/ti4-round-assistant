@@ -11,5 +11,10 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
+app.MapGet("/", () => "TI4 Assistant API is running.");
+app.MapPost("/game/create", () => {
+    return "Game created.";
+});
+
 app.UseHttpsRedirection();
 app.Run();
