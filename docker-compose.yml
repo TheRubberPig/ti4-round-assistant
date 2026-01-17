@@ -1,7 +1,6 @@
 services:
   db:
     image: postgres
-    container-name: ti4-api-db
     restart: always
     shm_size: 128mb
     environment:
@@ -11,7 +10,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./data/postgres:/var/lib/postgresql/data
+      - ./data/postgres:/var/lib/postgresql
       
   ti4-api:
     build:
